@@ -27,6 +27,13 @@ class GameDetailsViewController: UIViewController {
         }
         
         nameInput.text = UserDefaults.standard.string(forKey: "name")
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameDetailsViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
