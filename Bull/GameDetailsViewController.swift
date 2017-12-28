@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Birdsong
 
-class GameDetailsViewController: UIViewController {
+class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     var newGame: Bool!
     @IBOutlet var topLabel: UILabel!
     @IBOutlet var gameIdLabel: UILabel!
     @IBOutlet var gameIdInput: UITextField!
+    @IBOutlet var gameIdInputView: UIView!
     @IBOutlet var actionButton: RoundedButton!
     @IBOutlet var nameInput: UITextField!
     
@@ -22,8 +24,12 @@ class GameDetailsViewController: UIViewController {
         if newGame {
             topLabel.text = "CREATE GAME"
             gameIdLabel.isHidden = true
-            gameIdInput.isHidden = true
+            gameIdInputView.isHidden = true
             actionButton.setTitle("CREATE GAME", for: .normal)
+            nameInput.returnKeyType = .go
+            nameInput.delegate = self
+        } else {
+            gameIdInput.delegate = self
         }
         
         nameInput.text = UserDefaults.standard.string(forKey: "name")
@@ -40,14 +46,26 @@ class GameDetailsViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        createOrJoin(textField)
+        return true
+    }
+    
     @IBAction func createOrJoin(_ sender: Any) {
         UserDefaults.standard.set(nameInput.text, forKey: "name")
         self.performSegue(withIdentifier: "toPlayerList", sender: self)
+    }
+    
+    @IBAction func goBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! PlayerListViewController
         destinationVC.name = nameInput.text!
         destinationVC.gameId = newGame ? "new" : gameIdInput.text!
+        destinationVC.socket = Socket(url: "ws://2226222d.ngrok.io/socket/websocket", params: ["name": nameInput.text!])
     }
 }

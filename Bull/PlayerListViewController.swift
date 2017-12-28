@@ -18,6 +18,7 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet var gameIdLabel: UILabel!
     @IBOutlet var playerListTableView: UITableView!
+    @IBOutlet var startButton: RoundedButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = self.channel?.presence.firstMetas().count
@@ -40,33 +41,66 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         playerListTableView.dataSource = self
         gameIdLabel.text = gameId
         
+        connectSocket()
+        
+        self.updatePlayerList()
+    }
+    
+    func setupCallbacks() {
+        self.channel?.on("new:msg", callback: { response in
+            print(response)
+        })
+        
+        self.channel?.join()?.receive("ok", callback: { payload in
+            print("Joined channel: \(self.channel!.topic)")
+            self.updatePlayerList()
+        }).receive("error", callback: { payload in
+            print("Failed joining channel. Payload: \(payload)")
+        })
+        
+        // Presence support
+        self.channel?.onPresenceUpdate({ _ in
+            print("Received presence update")
+            self.updatePlayerList()
+        })
+        
+        self.channel?.presence.onStateChange = { _ in
+            print("Received presence state change")
+            self.updatePlayerList()
+        }
+        
+        self.channel?.presence.onJoin = { _, _ in
+            print("Received presence join event")
+            self.updatePlayerList()
+        }
+        
+        self.channel?.presence.onLeave = { _, _ in
+            print("Received presence leave event")
+            self.updatePlayerList()
+        }
+    }
+    
+    func connectSocket() {
         // After connection, set up a channel and join it.
-        socket = Socket(url: "ws://9b5c5163.ngrok.io/socket/websocket", params: ["name": self.name])
         socket!.onConnect = {
             self.channel = self.socket!.channel("game:\(self.gameId!)", payload: [:])
             
-            self.channel?.on("new:msg", callback: { response in
-                print(response)
+            self.channel?.on("new_game", callback: { response in
+                let newGameId = response.payload.first!.value as! String
+                self.channel?.leave()
+                self.channel = self.socket!.channel("game:\(newGameId)", payload: [:])
+                self.setupCallbacks()
+                self.channel?.join()?.receive("ok", callback: { payload in
+                    print("Joined channel: \(self.channel!.topic)")
+                    self.startButton.isHidden = false
+                    self.gameIdLabel.text = newGameId
+                    self.updatePlayerList()
+                }).receive("error", callback: { payload in
+                    print("Failed joining channel.")
+                })
             })
             
-            self.channel?.join()?.receive("ok", callback: { payload in
-                print("Joined channel: \(self.channel!.topic)")
-            }).receive("error", callback: { payload in
-                print("Failed joining channel.")
-            })
-            
-            // Presence support.
-            self.channel?.presence.onStateChange = { _ in
-                self.updatePlayerList()
-            }
-            
-            self.channel?.presence.onJoin = { _, _ in
-                self.updatePlayerList()
-            }
-            
-            self.channel?.presence.onLeave = { _, _ in
-                self.updatePlayerList()
-            }
+            self.setupCallbacks()
         }
         
         // Connect!
@@ -74,9 +108,16 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func updatePlayerList() {
+        print("Updating player list")
         DispatchQueue.main.async {
             self.playerListTableView.reloadData()
         }
+    }
+    
+    @IBAction func leaveGame(_ sender: Any) {
+        socket?.disconnect()
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
