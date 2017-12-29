@@ -9,6 +9,7 @@
 import UIKit
 
 class DefinitionsTableCell: UITableViewCell {
+    @IBOutlet var definitionView: UIView!
     @IBOutlet var definitionLabel: UILabel!
     var player: String!
 }

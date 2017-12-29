@@ -11,6 +11,7 @@ import UIKit
 class VoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var instructionLabel: UILabel!
     @IBOutlet var definitionsTableView: UITableView!
+    var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +37,21 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "definitionCell") as! DefinitionsTableCell
+        let index = indexPath.row
+        let cellIdentifier = index == selectedIndex ? "selectedDefinitionCell" : "definitionCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! DefinitionsTableCell
         cell.definitionLabel.text = Game.definitionAt(indexPath.row)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        updateTable()
+    }
+    
+    func updateTable() {
+        DispatchQueue.main.async {
+            self.definitionsTableView.reloadData()
+        }
     }
 }

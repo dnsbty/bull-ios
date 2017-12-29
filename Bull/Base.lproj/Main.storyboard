@@ -291,10 +291,10 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="playerCell" rowHeight="65" id="uco-pS-JY5" customClass="PlayerListTableCell" customModule="Bull" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="playerCell" rowHeight="65" id="uco-pS-JY5" customClass="PlayerListTableCell" customModule="Bull" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="382" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="playerCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uco-pS-JY5" id="aYR-Gi-IfA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" restorationIdentifier="playerCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uco-pS-JY5" id="aYR-Gi-IfA">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="64.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -594,20 +594,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YV1-8e-52r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YV1-8e-52r">
                                 <rect key="frame" x="16" y="76" width="382" height="532"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="definition" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="definitionCell" rowHeight="65" id="cLc-LH-LeD" customClass="DefinitionsTableCell" customModule="Bull" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="definitionCell" focusStyle="custom" rowHeight="65" id="cLc-LH-LeD" customClass="DefinitionsTableCell" customModule="Bull" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="382" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="playerCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cLc-LH-LeD" id="fkD-PZ-V4W">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cLc-LH-LeD" id="fkD-PZ-V4W">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="64.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxi-5t-lwc">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxi-5t-lwc">
                                                     <rect key="frame" x="0.0" y="3.9999999999999964" width="382" height="56.666666666666657"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilw-1i-qwb">
@@ -637,6 +637,47 @@
                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="definitionLabel" destination="Ilw-1i-qwb" id="ZIb-DO-eK2"/>
+                                            <outlet property="definitionView" destination="Sxi-5t-lwc" id="WpN-mT-Hau"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="selectedDefinitionCell" focusStyle="custom" rowHeight="65" id="F0o-SJ-14n" customClass="DefinitionsTableCell" customModule="Bull" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="93" width="382" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F0o-SJ-14n" id="EQl-aN-GC8">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="64.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcy-kZ-GJ0">
+                                                    <rect key="frame" x="0.0" y="3.9999999999999964" width="382" height="56.666666666666657"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyq-RE-Qaw">
+                                                            <rect key="frame" x="12" y="4" width="358" height="49"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="gyq-RE-Qaw" firstAttribute="top" secondItem="Wcy-kZ-GJ0" secondAttribute="top" constant="4" id="dNm-Em-uwb"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gyq-RE-Qaw" secondAttribute="bottom" constant="4" id="faI-YD-TRr"/>
+                                                        <constraint firstItem="gyq-RE-Qaw" firstAttribute="leading" secondItem="Wcy-kZ-GJ0" secondAttribute="leading" constant="12" id="gGH-bW-fJJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gyq-RE-Qaw" secondAttribute="trailing" constant="12" id="w94-wp-Wo6"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Wcy-kZ-GJ0" secondAttribute="bottom" constant="4" id="6ai-XY-Meg"/>
+                                                <constraint firstItem="Wcy-kZ-GJ0" firstAttribute="leading" secondItem="EQl-aN-GC8" secondAttribute="leading" id="O5t-kM-RLp"/>
+                                                <constraint firstItem="Wcy-kZ-GJ0" firstAttribute="top" secondItem="EQl-aN-GC8" secondAttribute="top" constant="4" id="xcb-p7-fLq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Wcy-kZ-GJ0" secondAttribute="trailing" id="zHG-7l-bDB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="definitionLabel" destination="gyq-RE-Qaw" id="AdU-fN-zBZ"/>
+                                            <outlet property="definitionView" destination="Wcy-kZ-GJ0" id="zmR-RO-kXt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -27,6 +27,10 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Trying to select row \(indexPath.row)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
