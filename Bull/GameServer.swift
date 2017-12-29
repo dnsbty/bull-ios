@@ -10,7 +10,7 @@ import Foundation
 import Birdsong
 
 class GameServer {
-    let socketUrl = "ws://2226222d.ngrok.io/socket/websocket"
+    let socketUrl = "ws://78345989.ngrok.io/socket/websocket"
     var socket: Socket?
     var channel: Channel?
     var onJoin: ((_ gameId: String) -> ())?
@@ -33,8 +33,7 @@ class GameServer {
     }
     
     static func playerCount() -> Int {
-        let count = shared.channel?.presence.firstMetas().count
-        return count == nil ? 0 : count!
+        return shared.channel?.presence.firstMetas().count ?? 0
     }
     
     static func playerNames() -> [String] {
@@ -109,25 +108,20 @@ class GameServer {
     }
     
     static func setupCallbacks() {
-        print("Setting up callbacks!")
         // Presence support
         shared.channel!.onPresenceUpdate({ _ in
-            print("Presence update")
             shared.onPresenceUpdate?()
         })
         
         shared.channel!.presence.onStateChange = { _ in
-            print("Presence state change")
             shared.onPresenceUpdate?()
         }
         
         shared.channel!.presence.onJoin = { _, _ in
-            print("Presence join")
             shared.onPresenceUpdate?()
         }
         
         shared.channel!.presence.onLeave = { _, _ in
-            print("Presence leave")
             shared.onPresenceUpdate?()
         }
         

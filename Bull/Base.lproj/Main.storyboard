@@ -20,10 +20,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--New Game-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="New Game" id="BYZ-38-t0r" customClass="NewGameViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="BYZ-38-t0r" customClass="NewGameViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--Connect to Game-->
+        <!--Connect-->
         <scene sceneID="TML-3D-e6x">
             <objects>
-                <viewController title="Connect to Game" id="F0G-6c-fYC" customClass="GameDetailsViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Connect" id="F0G-6c-fYC" customClass="GameDetailsViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="urR-Cs-Xwi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="969.56521739130437" y="132.88043478260872"/>
         </scene>
-        <!--Waiting-->
+        <!--Await Start-->
         <scene sceneID="eu0-GT-XvW">
             <objects>
-                <viewController title="Waiting" id="8kF-7H-jII" customClass="PlayerListViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Await Start" id="8kF-7H-jII" customClass="PlayerListViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NYr-Eg-eh1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,10 +385,10 @@
             </objects>
             <point key="canvasLocation" x="1733" y="134"/>
         </scene>
-        <!--Waiting View Controller-->
+        <!--Wait-->
         <scene sceneID="FNe-f4-CdF">
             <objects>
-                <viewController id="IiS-QM-Bzg" customClass="WaitingViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Wait" id="IiS-QM-Bzg" customClass="WaitingViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oQ2-dV-K93">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -487,10 +487,10 @@
             </objects>
             <point key="canvasLocation" x="2530" y="932"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Define-->
         <scene sceneID="1eg-TI-vvH">
             <objects>
-                <viewController id="hTe-LD-0h5" customClass="GameViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Define" id="hTe-LD-0h5" customClass="GameViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pSk-u0-hO4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -586,23 +586,142 @@
             </objects>
             <point key="canvasLocation" x="2530.434782608696" y="133.69565217391306"/>
         </scene>
-        <!--View Controller-->
+        <!--Vote-->
         <scene sceneID="Tuc-Hf-38Q">
             <objects>
-                <viewController id="5le-WF-JeV" sceneMemberID="viewController">
+                <viewController title="Vote" id="5le-WF-JeV" customClass="VoteViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fWC-El-z7Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YV1-8e-52r">
+                                <rect key="frame" x="16" y="76" width="382" height="532"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="definition" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="definitionCell" rowHeight="65" id="cLc-LH-LeD" customClass="DefinitionsTableCell" customModule="Bull" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="382" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="playerCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cLc-LH-LeD" id="fkD-PZ-V4W">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="64.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxi-5t-lwc">
+                                                    <rect key="frame" x="0.0" y="3.9999999999999964" width="382" height="56.666666666666657"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilw-1i-qwb">
+                                                            <rect key="frame" x="12" y="4" width="358" height="49"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Ilw-1i-qwb" firstAttribute="leading" secondItem="Sxi-5t-lwc" secondAttribute="leading" constant="12" id="1ti-Pt-QkF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ilw-1i-qwb" secondAttribute="trailing" constant="12" id="412-Ed-sIM"/>
+                                                        <constraint firstItem="Ilw-1i-qwb" firstAttribute="top" secondItem="Sxi-5t-lwc" secondAttribute="top" constant="4" id="Ryb-CW-igL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ilw-1i-qwb" secondAttribute="bottom" constant="4" id="kdV-v8-GlP"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Sxi-5t-lwc" secondAttribute="trailing" id="Q3D-1O-oBc"/>
+                                                <constraint firstItem="Sxi-5t-lwc" firstAttribute="top" secondItem="fkD-PZ-V4W" secondAttribute="top" constant="4" id="a8Y-v8-wbH"/>
+                                                <constraint firstAttribute="bottom" secondItem="Sxi-5t-lwc" secondAttribute="bottom" constant="4" id="f0h-Dg-nqo"/>
+                                                <constraint firstItem="Sxi-5t-lwc" firstAttribute="leading" secondItem="fkD-PZ-V4W" secondAttribute="leading" id="ouv-Sy-O0W"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="definitionLabel" destination="Ilw-1i-qwb" id="ZIb-DO-eK2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yw5-Ob-8hC">
+                                <rect key="frame" x="16" y="684" width="382" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="32" id="gWu-g0-v5H"/>
+                                    <constraint firstAttribute="height" constant="32" id="wID-oy-SfI"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="x4k-mz-YgL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Leave Game">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="leaveGame:" destination="8kF-7H-jII" eventType="touchUpInside" id="c9X-mb-kUx"/>
+                                    <action selector="leaveGame:" destination="IiS-QM-Bzg" eventType="touchUpInside" id="rAr-R4-uhG"/>
+                                    <action selector="leaveGameWithSender:" destination="5le-WF-JeV" eventType="touchUpInside" id="Xbj-up-Qo2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpA-Ld-bFF">
+                                <rect key="frame" x="16" y="32" width="382" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="92x-cF-gVT"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="ary-L4-Va9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy8-Ng-FNR" customClass="RoundedButton" customModule="Bull" customModuleProvider="target">
+                                <rect key="frame" x="16" y="620" width="382" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="44u-0o-BqA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="SUBMIT VOTE"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="createGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W5t-Iy-1lN"/>
+                                    <action selector="startGame:" destination="8kF-7H-jII" eventType="touchUpInside" id="qdV-JO-jlU"/>
+                                    <action selector="submitDefinition:" destination="hTe-LD-0h5" eventType="touchUpInside" id="lFM-59-zGR"/>
+                                    <action selector="submitVoteWithSender:" destination="5le-WF-JeV" eventType="touchUpInside" id="b4e-6y-Db5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yw5-Ob-8hC" firstAttribute="top" secondItem="jy8-Ng-FNR" secondAttribute="bottom" constant="8" id="29u-4I-B2g"/>
+                            <constraint firstItem="jy8-Ng-FNR" firstAttribute="top" secondItem="YV1-8e-52r" secondAttribute="bottom" constant="12" id="3rw-ge-RQm"/>
+                            <constraint firstItem="mpA-Ld-bFF" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="9Kv-qq-uOT"/>
+                            <constraint firstItem="YV1-8e-52r" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="COh-NU-Gpz"/>
+                            <constraint firstItem="mpA-Ld-bFF" firstAttribute="top" secondItem="6bc-Vu-4IA" secondAttribute="top" constant="12" id="GfR-Ea-T2V"/>
+                            <constraint firstItem="YV1-8e-52r" firstAttribute="top" secondItem="mpA-Ld-bFF" secondAttribute="bottom" constant="12" id="Nhw-WB-KlR"/>
+                            <constraint firstItem="Yw5-Ob-8hC" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="PuN-5I-Iza"/>
+                            <constraint firstItem="6bc-Vu-4IA" firstAttribute="trailing" secondItem="jy8-Ng-FNR" secondAttribute="trailing" constant="16" id="SKY-b9-2to"/>
+                            <constraint firstItem="6bc-Vu-4IA" firstAttribute="trailing" secondItem="YV1-8e-52r" secondAttribute="trailing" constant="16" id="Uic-fg-dYA"/>
+                            <constraint firstItem="Yw5-Ob-8hC" firstAttribute="top" secondItem="jy8-Ng-FNR" secondAttribute="bottom" constant="8" id="YPO-oW-iKO"/>
+                            <constraint firstItem="6bc-Vu-4IA" firstAttribute="trailing" secondItem="mpA-Ld-bFF" secondAttribute="trailing" constant="16" id="a0Y-gz-D2m"/>
+                            <constraint firstItem="6bc-Vu-4IA" firstAttribute="trailing" secondItem="Yw5-Ob-8hC" secondAttribute="trailing" constant="16" id="c43-xx-ZbM"/>
+                            <constraint firstItem="6bc-Vu-4IA" firstAttribute="bottom" secondItem="Yw5-Ob-8hC" secondAttribute="bottom" constant="20" id="cw2-Go-ANy"/>
+                            <constraint firstItem="jy8-Ng-FNR" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="iiU-4B-HQ8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6bc-Vu-4IA"/>
                     </view>
+                    <connections>
+                        <outlet property="definitionsTableView" destination="YV1-8e-52r" id="Ybk-vt-xws"/>
+                        <outlet property="instructionLabel" destination="mpA-Ld-bFF" id="yfG-82-ant"/>
+                        <segue destination="IiS-QM-Bzg" kind="show" identifier="wait" id="Ddp-jF-8ox"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mG0-zS-sB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3338" y="134"/>
+            <point key="canvasLocation" x="3337.68115942029" y="133.69565217391306"/>
         </scene>
     </scenes>
     <resources>
         <image name="Checkmark" width="49" height="49"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ddp-jF-8ox"/>
+    </inferredMetricsTieBreakers>
 </document>

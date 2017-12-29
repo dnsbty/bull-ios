@@ -12,6 +12,7 @@ class Game {
     var name: String?
     var word: String?
     var definitions: [String: String]?
+    var definitionsOrder: [String]?
     
     // MARK: Singleton
     class var shared : Game {
@@ -87,5 +88,30 @@ class Game {
     
     static func setDefinitions(_ definitions: [String: String]) {
         shared.definitions = definitions
+    }
+    
+    static func definitionCount() -> Int {
+        return shared.definitions?.count ?? 0
+    }
+    
+    static func randomizeDefinitions() {
+        var keys = Array((shared.definitions?.keys)!)
+        var last = keys.count - 1
+        
+        while(last > 0)
+        {
+            let rand = Int(arc4random_uniform(UInt32(last)))
+            keys.swapAt(last, rand)
+            last -= 1
+        }
+        shared.definitionsOrder = keys
+    }
+    
+    static func definitionAt(_ index: Int) -> String {
+        if shared.definitionsOrder == nil {
+            randomizeDefinitions()
+        }
+        let key = shared.definitionsOrder![index]
+        return shared.definitions![key]!
     }
 }
