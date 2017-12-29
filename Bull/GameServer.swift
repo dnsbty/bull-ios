@@ -146,6 +146,10 @@ class GameServer {
         shared.channel?.send("define_word", payload: ["definition": definition, "player": Game.playerName()!])
     }
     
+    static func submitVote(_ writer: String) {
+        shared.channel?.send("submit_vote", payload: ["writer": writer, "player": Game.playerName()!])
+    }
+    
     static func updateStatus(_ status: String) {
         shared.channel?.send("new_status", payload: ["status": status])
     }

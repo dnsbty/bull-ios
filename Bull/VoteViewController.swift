@@ -23,7 +23,13 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func submitVote(sender: Any?) {
-        Game.setReady()
+        if selectedIndex == nil {
+            let alert = UIAlertController(title: "No Selection", message: "Please select a definition before continuing", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        Game.submitVote(selectedIndex!)
         self.performSegue(withIdentifier: "wait", sender: self)
     }
     

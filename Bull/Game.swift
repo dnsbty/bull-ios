@@ -71,6 +71,12 @@ class Game {
         setReady()
     }
     
+    static func submitVote(_ index: Int) {
+        let writer = shared.definitionsOrder![index]
+        GameServer.submitVote(writer)
+        setReady()
+    }
+    
     static func leave() {
         shared.name = nil
         shared.word = nil
