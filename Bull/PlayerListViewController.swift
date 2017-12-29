@@ -10,27 +10,22 @@ import UIKit
 import Birdsong
 
 class PlayerListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var socket: Socket?
-    var channel: Channel?
     var name: String!
     var gameId: String!
+    var isCreator: Bool!
     
     @IBOutlet var gameIdLabel: UILabel!
     @IBOutlet var playerListTableView: UITableView!
     @IBOutlet var startButton: RoundedButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = self.channel?.presence.firstMetas().count
-        return count == nil ? 0 : count!
+        return GameServer.playerCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerListTableCell
-        if let keys = self.channel?.presence.firstMetas().keys {
-            let name = Array(keys)[indexPath.row]
-            cell.nameLabel!.text = name
-        }
+        let name = GameServer.playerNames()[indexPath.row]
+        cell.nameLabel!.text = name
         return cell
     }
     
@@ -41,81 +36,38 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         playerListTableView.dataSource = self
         gameIdLabel.text = gameId
         
-        connectSocket()
+        GameServer.shared.onPresenceUpdate = {
+            self.updatePlayerList()
+        }
         
+        GameServer.shared.onJoin = { gameId in
+            if self.isCreator {
+                self.startButton.isHidden = false
+            }
+            
+            GameServer.setupCallbacks()
+            
+            self.gameId = gameId
+            self.gameIdLabel.text = self.gameId
+            self.updatePlayerList()
+        }
+        
+        if isCreator {
+            GameServer.createGame(name)
+        } else {
+            GameServer.joinGame(gameId, name)
+        }
         self.updatePlayerList()
     }
     
-    func setupCallbacks() {
-        self.channel?.on("new:msg", callback: { response in
-            print(response)
-        })
-        
-        self.channel?.join()?.receive("ok", callback: { payload in
-            print("Joined channel: \(self.channel!.topic)")
-            self.updatePlayerList()
-        }).receive("error", callback: { payload in
-            print("Failed joining channel. Payload: \(payload)")
-        })
-        
-        // Presence support
-        self.channel?.onPresenceUpdate({ _ in
-            print("Received presence update")
-            self.updatePlayerList()
-        })
-        
-        self.channel?.presence.onStateChange = { _ in
-            print("Received presence state change")
-            self.updatePlayerList()
-        }
-        
-        self.channel?.presence.onJoin = { _, _ in
-            print("Received presence join event")
-            self.updatePlayerList()
-        }
-        
-        self.channel?.presence.onLeave = { _, _ in
-            print("Received presence leave event")
-            self.updatePlayerList()
-        }
-    }
-    
-    func connectSocket() {
-        // After connection, set up a channel and join it.
-        socket!.onConnect = {
-            self.channel = self.socket!.channel("game:\(self.gameId!)", payload: [:])
-            
-            self.channel?.on("new_game", callback: { response in
-                let newGameId = response.payload.first!.value as! String
-                self.channel?.leave()
-                self.channel = self.socket!.channel("game:\(newGameId)", payload: [:])
-                self.setupCallbacks()
-                self.channel?.join()?.receive("ok", callback: { payload in
-                    print("Joined channel: \(self.channel!.topic)")
-                    self.startButton.isHidden = false
-                    self.gameIdLabel.text = newGameId
-                    self.updatePlayerList()
-                }).receive("error", callback: { payload in
-                    print("Failed joining channel.")
-                })
-            })
-            
-            self.setupCallbacks()
-        }
-        
-        // Connect!
-        socket!.connect()
-    }
-    
     func updatePlayerList() {
-        print("Updating player list")
         DispatchQueue.main.async {
             self.playerListTableView.reloadData()
         }
     }
     
     @IBAction func leaveGame(_ sender: Any) {
-        socket?.disconnect()
+        GameServer.disconnect()
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }

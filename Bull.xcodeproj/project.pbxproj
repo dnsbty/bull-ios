@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C051FB75F43FC0CEDA7D6491 /* Pods_Bull.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C83632AE6ABFED14ADA5B2 /* Pods_Bull.framework */; };
 		D7B6B19B1FF436C400B8133C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6B19A1FF436C400B8133C /* Player.swift */; };
+		D7B6B19F1FF5E7A700B8133C /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6B19E1FF5E7A700B8133C /* GameServer.swift */; };
 		D7B917BF1FF31AAB0073D49E /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B917BE1FF31AAB0073D49E /* RoundedButton.swift */; };
 		D7B917C11FF324400073D49E /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B917C01FF324400073D49E /* PlayerListViewController.swift */; };
 		D7B917C31FF327A30073D49E /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B917C21FF327A30073D49E /* GameDetailsViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		15D75C35D280E0A91E41A64E /* Pods-Bull.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bull.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bull/Pods-Bull.release.xcconfig"; sourceTree = "<group>"; };
 		D7B6B19A1FF436C400B8133C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D7B6B19E1FF5E7A700B8133C /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServer.swift; sourceTree = "<group>"; };
 		D7B917BE1FF31AAB0073D49E /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D7B917C01FF324400073D49E /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		D7B917C21FF327A30073D49E /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				D7C6C41B1FF30E0D00983C2A /* Info.plist */,
 				D7B917BE1FF31AAB0073D49E /* RoundedButton.swift */,
 				D7B917C01FF324400073D49E /* PlayerListViewController.swift */,
+				D7B6B19E1FF5E7A700B8133C /* GameServer.swift */,
 			);
 			path = Bull;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				D7B917C11FF324400073D49E /* PlayerListViewController.swift in Sources */,
 				D7B917C31FF327A30073D49E /* GameDetailsViewController.swift in Sources */,
 				D7B917BF1FF31AAB0073D49E /* RoundedButton.swift in Sources */,
+				D7B6B19F1FF5E7A700B8133C /* GameServer.swift in Sources */,
 				D7B6B19B1FF436C400B8133C /* Player.swift in Sources */,
 				D7C6C4101FF30E0D00983C2A /* AppDelegate.swift in Sources */,
 				D7B917C51FF33CCC0073D49E /* PlayerListTableCell.swift in Sources */,

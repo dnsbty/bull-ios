@@ -65,7 +65,7 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! PlayerListViewController
         destinationVC.name = nameInput.text!
-        destinationVC.gameId = newGame ? "new" : gameIdInput.text!
-        destinationVC.socket = Socket(url: "ws://2226222d.ngrok.io/socket/websocket", params: ["name": nameInput.text!])
+        destinationVC.gameId = newGame ? nil : gameIdInput.text!
+        destinationVC.isCreator = newGame
     }
 }
