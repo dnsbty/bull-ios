@@ -8,9 +8,38 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, UITextViewDelegate {
+    @IBOutlet var wordLabel: UILabel!
+    @IBOutlet var definitionInput: UITextView!
+    
+    override func viewDidLoad() {
+        wordLabel.text = "Define \"\(Game.currentWord()!)\""
+        definitionInput.delegate = self
+        definitionInput.becomeFirstResponder()
+        Game.setThinking()
+    }
+    
+    @IBAction func submitDefinition(_ sender: Any) {
+        let definition = definitionInput.text ?? ""
+        if definition.isEmpty {
+            let alert = UIAlertController(title: "Alert", message: "Please enter a definition", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        Game.submitDefinition(definition)
+    }
+    
     @IBAction func leaveGame() {
         GameServer.disconnect()
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 import Birdsong
 
 class PlayerListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var name: String!
     var gameId: String!
     var isCreator: Bool!
     
@@ -19,13 +18,12 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var startButton: RoundedButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return GameServer.playerCount()
+        return Game.playerCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerListTableCell
-        let name = GameServer.playerNames()[indexPath.row]
-        cell.nameLabel!.text = name
+        cell.nameLabel!.text = Game.playerAt(indexPath.row)
         return cell
     }
     
@@ -53,14 +51,13 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         GameServer.shared.onStartGame = {
-            print("starting game")
             self.performSegue(withIdentifier: "startGame", sender: self)
         }
         
         if isCreator {
-            GameServer.createGame(name)
+            GameServer.createGame(Game.playerName()!)
         } else {
-            GameServer.joinGame(gameId, name)
+            GameServer.joinGame(gameId, Game.playerName()!)
         }
         self.updatePlayerList()
     }

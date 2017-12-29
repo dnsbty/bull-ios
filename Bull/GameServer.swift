@@ -124,11 +124,21 @@ class GameServer {
         }
         
         shared.channel!.on("start_game", callback: { response in
+            let word = response.payload.first!.value as! String
+            Game.setWord(word)
             shared.onStartGame?()
         })
     }
     
     static func startGame() {
         shared.channel?.send("start_game", payload: [:])
+    }
+    
+    static func submitDefinition(_ definition: String) {
+        shared.channel?.send("define_word", payload: ["definition": definition, "player": Game.playerName()!])
+    }
+    
+    static func updateStatus(_ status: String) {
+        shared.channel?.send("new_status", payload: ["status": status])
     }
 }

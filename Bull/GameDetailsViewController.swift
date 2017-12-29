@@ -21,6 +21,9 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        nameInput.text = name
+        
         if newGame {
             topLabel.text = "CREATE GAME"
             gameIdLabel.isHidden = true
@@ -28,11 +31,17 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
             actionButton.setTitle("CREATE GAME", for: .normal)
             nameInput.returnKeyType = .go
             nameInput.delegate = self
+            if name.isEmpty {
+                nameInput.becomeFirstResponder()
+            }
         } else {
             gameIdInput.delegate = self
+            if name.isEmpty {
+                nameInput.becomeFirstResponder()
+            } else {
+                gameIdInput.becomeFirstResponder()
+            }
         }
-        
-        nameInput.text = UserDefaults.standard.string(forKey: "name")
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameDetailsViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -63,7 +72,7 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! PlayerListViewController
-        destinationVC.name = nameInput.text!
+        Game.setPlayerName(nameInput.text!)
         destinationVC.gameId = newGame ? nil : gameIdInput.text!
         destinationVC.isCreator = newGame
     }
