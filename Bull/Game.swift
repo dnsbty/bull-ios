@@ -11,6 +11,7 @@ import Foundation
 class Game {
     var name: String?
     var word: String?
+    var definitions: [String: String]?
     
     // MARK: Singleton
     class var shared : Game {
@@ -38,8 +39,10 @@ class Game {
         return GameServer.playerNames()
     }
     
-    static func playerAt(_ index: Int) -> String {
-        return players()[index]
+    static func playerAt(_ index: Int) -> Player {
+        let name = players()[index]
+        let status = GameServer.playerStatus(name)
+        return Player(name: name, status: status)
     }
     
     static func playerCount() -> Int {
@@ -65,5 +68,24 @@ class Game {
     static func submitDefinition(_ definition: String) {
         GameServer.submitDefinition(definition)
         setReady()
+    }
+    
+    static func leave() {
+        shared.name = nil
+        shared.word = nil
+        GameServer.disconnect()
+    }
+    
+    static func allReady() -> Bool {
+        for player in players() {
+            if GameServer.playerStatus(player) != "ready" {
+                return false
+            }
+        }
+        return true
+    }
+    
+    static func setDefinitions(_ definitions: [String: String]) {
+        shared.definitions = definitions
     }
 }

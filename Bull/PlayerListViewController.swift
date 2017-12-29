@@ -23,7 +23,7 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerListTableCell
-        cell.nameLabel!.text = Game.playerAt(indexPath.row)
+        cell.nameLabel!.text = Game.playerAt(indexPath.row).name
         return cell
     }
     
@@ -34,11 +34,11 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         playerListTableView.dataSource = self
         gameIdLabel.text = gameId
         
-        GameServer.shared.onPresenceUpdate = {
+        GameServer.onPresenceUpdate({
             self.updatePlayerList()
-        }
+        })
         
-        GameServer.shared.onJoin = { gameId in
+        GameServer.onJoin({ gameId in
             if self.isCreator {
                 self.startButton.isHidden = false
             }
@@ -48,11 +48,11 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.gameId = gameId
             self.gameIdLabel.text = self.gameId
             self.updatePlayerList()
-        }
+        })
         
-        GameServer.shared.onStartGame = {
+        GameServer.onStartGame({
             self.performSegue(withIdentifier: "startGame", sender: self)
-        }
+        })
         
         if isCreator {
             GameServer.createGame(Game.playerName()!)
@@ -73,7 +73,7 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func leaveGame(_ sender: Any) {
-        GameServer.disconnect()
+        Game.leave()
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     

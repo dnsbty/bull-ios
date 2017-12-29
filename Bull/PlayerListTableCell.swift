@@ -10,4 +10,5 @@ import UIKit
 
 class PlayerListTableCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var checkMark: UIImageView!
 }

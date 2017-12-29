@@ -16,7 +16,7 @@ class GameServer {
     var onJoin: ((_ gameId: String) -> ())?
     var onPresenceUpdate: (() -> ())?
     var onStartGame: (() -> ())?
-    var gameId: Int?
+    var onStartVoting: (() -> ())?
     
     // MARK: Singleton
     class var shared : GameServer {
@@ -98,6 +98,14 @@ class GameServer {
     
     static func disconnect() {
         shared.socket?.disconnect()
+        shared.channel = nil
+        clearCallbacks()
+    }
+    
+    static func clearCallbacks() {
+        shared.onJoin = nil
+        shared.onPresenceUpdate = nil
+        shared.onStartGame = nil
     }
     
     static func setupCallbacks() {
@@ -128,6 +136,12 @@ class GameServer {
             Game.setWord(word)
             shared.onStartGame?()
         })
+        
+        shared.channel!.on("start_voting", callback: { response in
+            let definitions = response.payload["definitions"] as! [String: String]
+            Game.setDefinitions(definitions)
+            shared.onStartVoting?()
+        })
     }
     
     static func startGame() {
@@ -140,5 +154,25 @@ class GameServer {
     
     static func updateStatus(_ status: String) {
         shared.channel?.send("new_status", payload: ["status": status])
+    }
+    
+    static func onStartGame(_ callback: @escaping () -> ()) {
+        shared.onStartGame = callback
+    }
+    
+    static func onJoin(_ callback: @escaping (String) -> ()) {
+        shared.onJoin = callback
+    }
+    
+    static func onPresenceUpdate(_ callback: @escaping () -> ()) {
+        shared.onPresenceUpdate = callback
+    }
+    
+    static func onStartVoting(_ callback: @escaping () -> ()) {
+        shared.onStartVoting = callback
+    }
+    
+    static func playerStatus(_ name: String) -> String {
+        return (shared.channel?.presence.firstMetaValue(id: name, key: "status"))!
     }
 }

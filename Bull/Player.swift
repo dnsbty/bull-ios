@@ -8,6 +8,5 @@
 
 struct Player {
     var name: String
-    var id: String
     var status: String
 }

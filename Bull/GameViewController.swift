@@ -28,10 +28,11 @@ class GameViewController: UIViewController, UITextViewDelegate {
             return
         }
         Game.submitDefinition(definition)
+        self.performSegue(withIdentifier: "waitForOthers", sender: self)
     }
     
     @IBAction func leaveGame() {
-        GameServer.disconnect()
+        Game.leave()
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
