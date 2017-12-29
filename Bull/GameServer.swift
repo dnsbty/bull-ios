@@ -15,6 +15,7 @@ class GameServer {
     var channel: Channel?
     var onJoin: ((_ gameId: String) -> ())?
     var onPresenceUpdate: (() -> ())?
+    var onStartGame: (() -> ())?
     var gameId: Int?
     
     // MARK: Singleton
@@ -102,24 +103,32 @@ class GameServer {
     static func setupCallbacks() {
         print("Setting up callbacks!")
         // Presence support
-        shared.channel?.onPresenceUpdate({ _ in
+        shared.channel!.onPresenceUpdate({ _ in
             print("Presence update")
             shared.onPresenceUpdate?()
         })
         
-        shared.channel?.presence.onStateChange = { _ in
+        shared.channel!.presence.onStateChange = { _ in
             print("Presence state change")
             shared.onPresenceUpdate?()
         }
         
-        shared.channel?.presence.onJoin = { _, _ in
+        shared.channel!.presence.onJoin = { _, _ in
             print("Presence join")
             shared.onPresenceUpdate?()
         }
         
-        shared.channel?.presence.onLeave = { _, _ in
+        shared.channel!.presence.onLeave = { _, _ in
             print("Presence leave")
             shared.onPresenceUpdate?()
         }
+        
+        shared.channel!.on("start_game", callback: { response in
+            shared.onStartGame?()
+        })
+    }
+    
+    static func startGame() {
+        shared.channel?.send("start_game", payload: [:])
     }
 }

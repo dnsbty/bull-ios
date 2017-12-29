@@ -58,8 +58,7 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func goBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

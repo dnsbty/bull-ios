@@ -52,6 +52,11 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.updatePlayerList()
         }
         
+        GameServer.shared.onStartGame = {
+            print("starting game")
+            self.performSegue(withIdentifier: "startGame", sender: self)
+        }
+        
         if isCreator {
             GameServer.createGame(name)
         } else {
@@ -66,10 +71,13 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    @IBAction func startGame(_ sender: Any) {
+        GameServer.startGame()
+    }
+    
     @IBAction func leaveGame(_ sender: Any) {
         GameServer.disconnect()
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
