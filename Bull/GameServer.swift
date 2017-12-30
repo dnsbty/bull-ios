@@ -17,6 +17,7 @@ class GameServer {
     var onPresenceUpdate: (() -> ())?
     var onStartGame: (() -> ())?
     var onStartVoting: (() -> ())?
+    var onVotesReceived: (() -> ())?
     
     // MARK: Singleton
     class var shared : GameServer {
@@ -136,6 +137,14 @@ class GameServer {
             Game.setDefinitions(definitions)
             shared.onStartVoting?()
         })
+        
+        shared.channel!.on("votes_received", callback: { response in
+            let votes = response.payload["votes"] as! [String: [String]]
+            let scores = response.payload["scores"] as! [String: Int]
+            Game.setVotes(votes)
+            Game.setScores(scores)
+            shared.onVotesReceived?()
+        })
     }
     
     static func startGame() {
@@ -168,6 +177,10 @@ class GameServer {
     
     static func onStartVoting(_ callback: @escaping () -> ()) {
         shared.onStartVoting = callback
+    }
+    
+    static func onVotesReceived(_ callback: @escaping () -> ()) {
+        shared.onVotesReceived = callback
     }
     
     static func playerStatus(_ name: String) -> String {

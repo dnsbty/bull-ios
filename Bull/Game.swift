@@ -13,6 +13,9 @@ class Game {
     var word: String?
     var definitions: [String: String]?
     var definitionsOrder: [String]?
+    var votes: [String: [String]]?
+    var scores: [String: Int]?
+    var votedFor: String?
     
     // MARK: Singleton
     class var shared : Game {
@@ -72,8 +75,8 @@ class Game {
     }
     
     static func submitVote(_ index: Int) {
-        let writer = shared.definitionsOrder![index]
-        GameServer.submitVote(writer)
+        shared.votedFor = shared.definitionsOrder![index]
+        GameServer.submitVote(shared.votedFor!)
         setReady()
     }
     
@@ -96,8 +99,24 @@ class Game {
         shared.definitions = definitions
     }
     
+    static func setVotes(_ votes: [String: [String]]) {
+        shared.votes = votes
+    }
+    
+    static func setScores(_ scores: [String: Int]) {
+        shared.scores = scores
+    }
+    
     static func definitionCount() -> Int {
         return shared.definitions?.count ?? 0
+    }
+    
+    static func votesFor(_ player: String) -> Int {
+        return shared.votes![player]?.count ?? 0
+    }
+    
+    static func definitionFor(_ player: String) -> String {
+        return shared.definitions![player] ?? ""
     }
     
     static func randomizeDefinitions() {
@@ -119,5 +138,13 @@ class Game {
         }
         let key = shared.definitionsOrder![index]
         return shared.definitions![key]!
+    }
+    
+    static func authorOfDefinitionAt(_ index: Int) -> String {
+        return shared.definitionsOrder![index]
+    }
+    
+    static func authorVotedFor() -> String {
+        return shared.votedFor!
     }
 }

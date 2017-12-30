@@ -24,6 +24,10 @@ class WaitingViewController: UIViewController, UITableViewDelegate, UITableViewD
         GameServer.onStartVoting({
             self.performSegue(withIdentifier: "startVoting", sender: self)
         })
+        
+        GameServer.onVotesReceived({
+            self.performSegue(withIdentifier: "showResults", sender: self)
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
