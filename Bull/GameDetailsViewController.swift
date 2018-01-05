@@ -73,6 +73,7 @@ class GameDetailsViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! PlayerListViewController
         Game.setPlayerName(nameInput.text!)
+        Game.setHost(newGame)
         destinationVC.gameId = newGame ? nil : gameIdInput.text!
         destinationVC.isCreator = newGame
     }

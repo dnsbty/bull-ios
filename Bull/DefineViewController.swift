@@ -1,5 +1,5 @@
 //
-//  GameViewController.swift
+//  DefineViewController.swift
 //  Bull
 //
 //  Created by Dennis Beatty on 12/29/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController, UITextViewDelegate {
+class DefineViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var wordLabel: UILabel!
     @IBOutlet var definitionInput: UITextView!
     

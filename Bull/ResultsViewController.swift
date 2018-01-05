@@ -42,7 +42,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func startNextRound() {
         Game.setReady()
-        self.performSegue(withIdentifier: "wait", sender: self)
+        self.performSegue(withIdentifier: "waitForOthers", sender: self)
     }
     
     @IBAction func leaveGame() {

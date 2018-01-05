@@ -9,13 +9,15 @@
 import Foundation
 
 class Game {
-    var name: String?
-    var word: String?
     var definitions: [String: String]?
     var definitionsOrder: [String]?
-    var votes: [String: [String]]?
+    var isCreator = false
+    var name: String?
     var scores: [String: Int]?
+    var started = false
+    var votes: [String: [String]]?
     var votedFor: String?
+    var word: String?
     
     // MARK: Singleton
     class var shared : Game {
@@ -81,9 +83,25 @@ class Game {
     }
     
     static func leave() {
+        resetForRound()
         shared.name = nil
         shared.word = nil
+        shared.isCreator = false
+        shared.started = false
+        shared.scores = nil
         GameServer.disconnect()
+    }
+    
+    static func resetForRound() {
+        shared.definitions = nil
+        shared.definitionsOrder = nil
+        shared.votes = nil
+        shared.votedFor = nil
+        shared.word = nil
+    }
+    
+    static func shouldSendReadySignal() -> Bool {
+        return shared.isCreator && shared.started && allReady()
     }
     
     static func allReady() -> Bool {
@@ -146,5 +164,17 @@ class Game {
     
     static func authorVotedFor() -> String {
         return shared.votedFor!
+    }
+    
+    static func setHost(_ isHost: Bool) {
+        shared.isCreator = isHost
+    }
+    
+    static func isHost() -> Bool {
+        return shared.isCreator
+    }
+    
+    static func start() {
+        shared.started = true
     }
 }

@@ -10,14 +10,15 @@ import Foundation
 import Birdsong
 
 class GameServer {
-    let socketUrl = "ws://78345989.ngrok.io/socket/websocket"
+    let socketUrl = "ws://e43b313c.ngrok.io/socket/websocket"
     var socket: Socket?
     var channel: Channel?
     var onJoin: ((_ gameId: String) -> ())?
     var onPresenceUpdate: (() -> ())?
+    var onStartDefining: (() -> ())?
     var onStartGame: (() -> ())?
     var onStartVoting: (() -> ())?
-    var onVotesReceived: (() -> ())?
+    var onShowResults: (() -> ())?
     
     // MARK: Singleton
     class var shared : GameServer {
@@ -116,6 +117,9 @@ class GameServer {
         
         shared.channel!.presence.onStateChange = { _ in
             shared.onPresenceUpdate?()
+            if Game.shouldSendReadySignal() {
+                sendReadySignal()
+            }
         }
         
         shared.channel!.presence.onJoin = { _, _ in
@@ -129,7 +133,14 @@ class GameServer {
         shared.channel!.on("start_game", callback: { response in
             let word = response.payload.first!.value as! String
             Game.setWord(word)
+            Game.start()
             shared.onStartGame?()
+        })
+        
+        shared.channel!.on("start_defining", callback: { response in
+            let word = response.payload.first!.value as! String
+            Game.setWord(word)
+            shared.onStartDefining?()
         })
         
         shared.channel!.on("start_voting", callback: { response in
@@ -138,13 +149,22 @@ class GameServer {
             shared.onStartVoting?()
         })
         
-        shared.channel!.on("votes_received", callback: { response in
+        shared.channel!.on("show_results", callback: { response in
             let votes = response.payload["votes"] as! [String: [String]]
             let scores = response.payload["scores"] as! [String: Int]
             Game.setVotes(votes)
             Game.setScores(scores)
-            shared.onVotesReceived?()
+            shared.onShowResults?()
         })
+    }
+    
+    static func allReady() -> Bool {
+        for name in playerNames() {
+            if shared.channel?.presence.firstMeta(id: name)!["status"] as! String != "ready" {
+                return false
+            }
+        }
+        return true
     }
     
     static func startGame() {
@@ -163,6 +183,10 @@ class GameServer {
         shared.channel?.send("new_status", payload: ["status": status])
     }
     
+    static func sendReadySignal() {
+        shared.channel?.send("all_ready", payload: [:])
+    }
+    
     static func onStartGame(_ callback: @escaping () -> ()) {
         shared.onStartGame = callback
     }
@@ -175,12 +199,16 @@ class GameServer {
         shared.onPresenceUpdate = callback
     }
     
+    static func onStartDefining(_ callback: @escaping () -> ()) {
+        shared.onStartDefining = callback
+    }
+    
     static func onStartVoting(_ callback: @escaping () -> ()) {
         shared.onStartVoting = callback
     }
     
-    static func onVotesReceived(_ callback: @escaping () -> ()) {
-        shared.onVotesReceived = callback
+    static func onShowResults(_ callback: @escaping () -> ()) {
+        shared.onShowResults = callback
     }
     
     static func playerStatus(_ name: String) -> String {

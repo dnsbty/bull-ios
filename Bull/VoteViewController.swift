@@ -30,7 +30,7 @@ class VoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         Game.submitVote(selectedIndex!)
-        self.performSegue(withIdentifier: "wait", sender: self)
+        self.performSegue(withIdentifier: "waitForOthers", sender: self)
     }
     
     @IBAction func leaveGame(sender: Any?) {

@@ -21,12 +21,22 @@ class WaitingViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.updatePlayerList()
         })
         
-        GameServer.onStartVoting({
-            self.performSegue(withIdentifier: "startVoting", sender: self)
+        GameServer.onStartDefining({
+            DispatchQueue.main.async(){
+                self.performSegue(withIdentifier: "defineWord", sender: self)
+            }
         })
         
-        GameServer.onVotesReceived({
-            self.performSegue(withIdentifier: "showResults", sender: self)
+        GameServer.onStartVoting({
+            DispatchQueue.main.async(){
+                self.performSegue(withIdentifier: "startVoting", sender: self)
+            }
+        })
+        
+        GameServer.onShowResults({
+            DispatchQueue.main.async(){
+                self.performSegue(withIdentifier: "showResults", sender: self)
+            }
         })
     }
     

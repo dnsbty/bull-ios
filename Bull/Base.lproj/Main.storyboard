@@ -97,13 +97,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="UMK-Dd-8Ys"/>
                     <connections>
                         <segue destination="F0G-6c-fYC" kind="show" identifier="toGameDetails" id="4ix-r7-nxQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="814" y="132"/>
         </scene>
         <!--Connect-->
         <scene sceneID="TML-3D-e6x">
@@ -247,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Lo-Zr-Mbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969.56521739130437" y="132.88043478260872"/>
+            <point key="canvasLocation" x="1658" y="131"/>
         </scene>
         <!--Await Start-->
         <scene sceneID="eu0-GT-XvW">
@@ -377,12 +378,12 @@
                         <outlet property="gameIdLabel" destination="uTq-2e-5VM" id="rLW-8r-KDi"/>
                         <outlet property="playerListTableView" destination="94q-ub-bmc" id="Fb8-Vw-rGL"/>
                         <outlet property="startButton" destination="e1t-Kt-afJ" id="5GQ-nL-aYZ"/>
-                        <segue destination="hTe-LD-0h5" kind="showDetail" identifier="startGame" id="eb2-Ul-uS6"/>
+                        <segue destination="hTe-LD-0h5" kind="showDetail" identifier="startGame" id="mSn-pb-Bbe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAN-4d-8oa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1733" y="134"/>
+            <point key="canvasLocation" x="2496" y="133"/>
         </scene>
         <!--Wait-->
         <scene sceneID="FNe-f4-CdF">
@@ -478,18 +479,19 @@
                     </view>
                     <connections>
                         <outlet property="playerListTableView" destination="y5h-CN-E8x" id="rGK-bS-WG8"/>
-                        <segue destination="5le-WF-JeV" kind="showDetail" identifier="startVoting" id="yLH-y6-HBm"/>
-                        <segue destination="c69-rY-9VF" kind="showDetail" identifier="showResults" id="ei0-lt-W2a"/>
+                        <segue destination="5le-WF-JeV" kind="showDetail" identifier="startVoting" id="4fY-SW-cZr"/>
+                        <segue destination="c69-rY-9VF" kind="showDetail" identifier="showResults" id="Z9p-0Z-dgn"/>
+                        <segue destination="hTe-LD-0h5" kind="showDetail" identifier="defineWord" id="dI7-yh-DwD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFl-eC-dqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3374" y="133"/>
+            <point key="canvasLocation" x="3300" y="132"/>
         </scene>
         <!--Define-->
         <scene sceneID="1eg-TI-vvH">
             <objects>
-                <viewController title="Define" id="hTe-LD-0h5" customClass="GameViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Define" id="hTe-LD-0h5" customClass="DefineViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pSk-u0-hO4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,15 +575,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Zn-w1-yxh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GO9-Ld-8cQ"/>
                     <connections>
                         <outlet property="definitionInput" destination="rJo-ag-SCE" id="FwJ-nj-GNN"/>
                         <outlet property="wordLabel" destination="Uxy-hf-H3H" id="rPg-mJ-BH1"/>
-                        <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="waitForOthers" id="4Ke-mC-byc"/>
+                        <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="waitForOthers" id="4p5-yx-bY6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7g-qw-sN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2530.434782608696" y="133.69565217391306"/>
+            <point key="canvasLocation" x="4123" y="982"/>
         </scene>
         <!--Vote-->
         <scene sceneID="Tuc-Hf-38Q">
@@ -743,12 +746,12 @@
                     <connections>
                         <outlet property="definitionsTableView" destination="YV1-8e-52r" id="Ybk-vt-xws"/>
                         <outlet property="instructionLabel" destination="mpA-Ld-bFF" id="yfG-82-ant"/>
-                        <segue destination="IiS-QM-Bzg" kind="show" identifier="wait" id="Ddp-jF-8ox"/>
+                        <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="waitForOthers" id="fcF-xx-FsW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mG0-zS-sB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4349" y="-74"/>
+            <point key="canvasLocation" x="4178" y="132"/>
         </scene>
         <!--Results-->
         <scene sceneID="88d-ax-D4l">
@@ -958,18 +961,19 @@
                     <connections>
                         <outlet property="resultLabel" destination="rRD-Eo-bFh" id="Mz3-bB-x7q"/>
                         <outlet property="votesTableView" destination="nUK-ST-vI6" id="cPP-Nb-ToZ"/>
-                        <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="wait" id="Bqt-HN-8O4"/>
+                        <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="waitForOthers" id="Ff5-CW-eYC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtE-rn-qfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4351.875" y="690.84507042253517"/>
+            <point key="canvasLocation" x="4178" y="-623"/>
         </scene>
     </scenes>
     <resources>
         <image name="Checkmark" width="49" height="49"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Bqt-HN-8O4"/>
+        <segue reference="dI7-yh-DwD"/>
+        <segue reference="4p5-yx-bY6"/>
     </inferredMetricsTieBreakers>
 </document>
