@@ -10,7 +10,7 @@ import Foundation
 import Birdsong
 
 class GameServer {
-    let socketUrl = "ws://e43b313c.ngrok.io/socket/websocket"
+    let socketUrl = "ws://28339503.ngrok.io/socket/websocket"
     var socket: Socket?
     var channel: Channel?
     var onJoin: ((_ gameId: String) -> ())?
@@ -138,6 +138,7 @@ class GameServer {
         })
         
         shared.channel!.on("start_defining", callback: { response in
+            Game.resetForRound()
             let word = response.payload.first!.value as! String
             Game.setWord(word)
             shared.onStartDefining?()

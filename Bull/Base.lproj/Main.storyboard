@@ -726,7 +726,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Yw5-Ob-8hC" firstAttribute="top" secondItem="jy8-Ng-FNR" secondAttribute="bottom" constant="8" id="29u-4I-B2g"/>
                             <constraint firstItem="jy8-Ng-FNR" firstAttribute="top" secondItem="YV1-8e-52r" secondAttribute="bottom" constant="12" id="3rw-ge-RQm"/>
                             <constraint firstItem="mpA-Ld-bFF" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="9Kv-qq-uOT"/>
                             <constraint firstItem="YV1-8e-52r" firstAttribute="leading" secondItem="6bc-Vu-4IA" secondAttribute="leading" constant="16" id="COh-NU-Gpz"/>
@@ -752,6 +751,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mG0-zS-sB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4178" y="132"/>
+        </scene>
+        <!--Final Results-->
+        <scene sceneID="Ki3-mK-hiv">
+            <objects>
+                <viewController title="Final Results" id="69H-v3-aYS" customClass="FinalResultsViewController" customModule="Bull" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kf6-1D-bx0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zaccharias wins!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zav-b4-L3p">
+                                <rect key="frame" x="16" y="32" width="288" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="DQT-TW-s1X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skY-KH-hVZ" customClass="RoundedButton" customModule="Bull" customModuleProvider="target">
+                                <rect key="frame" x="16" y="492" width="288" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="1lS-W6-YuK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="FINISH GAME"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="finishGame" destination="69H-v3-aYS" eventType="touchUpInside" id="pTd-4P-57c"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k0h-2M-siN">
+                                <rect key="frame" x="16" y="77" width="288" height="403"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="resultCell" rowHeight="65" id="1hz-qV-7ba" customClass="FinalResultsTableCell" customModule="Bull" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="288" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="playerCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1hz-qV-7ba" id="Ye4-Us-33X">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epa-PG-cSP">
+                                                    <rect key="frame" x="16" y="8" width="184" height="48.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32 pts" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY0-hP-UeD">
+                                                    <rect key="frame" x="208" y="8" width="64" height="48.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="64" id="0W9-Km-dfZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="gY0-hP-UeD" secondAttribute="bottom" constant="8" id="9js-Dg-xRk"/>
+                                                <constraint firstItem="Epa-PG-cSP" firstAttribute="leading" secondItem="Ye4-Us-33X" secondAttribute="leading" constant="16" id="Ag3-Pk-RVe"/>
+                                                <constraint firstAttribute="bottom" secondItem="Epa-PG-cSP" secondAttribute="bottom" constant="8" id="BzK-ff-GeB"/>
+                                                <constraint firstItem="gY0-hP-UeD" firstAttribute="leading" secondItem="Epa-PG-cSP" secondAttribute="trailing" constant="8" id="CNq-b8-1Mb"/>
+                                                <constraint firstItem="gY0-hP-UeD" firstAttribute="top" secondItem="Ye4-Us-33X" secondAttribute="top" constant="8" id="rNk-vb-itZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="gY0-hP-UeD" secondAttribute="trailing" constant="16" id="u7H-iS-WnX"/>
+                                                <constraint firstItem="Epa-PG-cSP" firstAttribute="top" secondItem="Ye4-Us-33X" secondAttribute="top" constant="8" id="wYt-tF-JnK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="playerNameLabel" destination="Epa-PG-cSP" id="osL-ph-A5X"/>
+                                            <outlet property="playerScoreLabel" destination="gY0-hP-UeD" id="3eb-pu-EyD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wZb-zW-Yix" firstAttribute="bottom" secondItem="skY-KH-hVZ" secondAttribute="bottom" constant="20" id="AMt-E2-sMb"/>
+                            <constraint firstItem="wZb-zW-Yix" firstAttribute="trailing" secondItem="skY-KH-hVZ" secondAttribute="trailing" constant="16" id="E8P-TA-w9J"/>
+                            <constraint firstItem="k0h-2M-siN" firstAttribute="leading" secondItem="wZb-zW-Yix" secondAttribute="leading" constant="16" id="EC5-9t-gHa"/>
+                            <constraint firstItem="k0h-2M-siN" firstAttribute="top" secondItem="zav-b4-L3p" secondAttribute="bottom" constant="12" id="FgH-sa-4ya"/>
+                            <constraint firstItem="zav-b4-L3p" firstAttribute="leading" secondItem="wZb-zW-Yix" secondAttribute="leading" constant="16" id="Swo-8h-rjQ"/>
+                            <constraint firstItem="skY-KH-hVZ" firstAttribute="top" secondItem="k0h-2M-siN" secondAttribute="bottom" constant="12" id="Vqg-ld-7wK"/>
+                            <constraint firstItem="wZb-zW-Yix" firstAttribute="trailing" secondItem="zav-b4-L3p" secondAttribute="trailing" constant="16" id="dQc-dT-K1y"/>
+                            <constraint firstItem="zav-b4-L3p" firstAttribute="top" secondItem="wZb-zW-Yix" secondAttribute="top" constant="12" id="wAL-jk-j9V"/>
+                            <constraint firstItem="skY-KH-hVZ" firstAttribute="leading" secondItem="wZb-zW-Yix" secondAttribute="leading" constant="16" id="xHg-xv-2pb"/>
+                            <constraint firstItem="wZb-zW-Yix" firstAttribute="trailing" secondItem="k0h-2M-siN" secondAttribute="trailing" constant="16" id="za6-QY-fn7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wZb-zW-Yix"/>
+                    </view>
+                    <connections>
+                        <outlet property="scoresTableView" destination="k0h-2M-siN" id="Ofd-7e-sIH"/>
+                        <outlet property="winnerLabel" destination="zav-b4-L3p" id="8nS-Xw-gxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hfP-mh-TvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5330.625" y="130.98591549295776"/>
         </scene>
         <!--Results-->
         <scene sceneID="88d-ax-D4l">
@@ -962,6 +1067,7 @@
                         <outlet property="resultLabel" destination="rRD-Eo-bFh" id="Mz3-bB-x7q"/>
                         <outlet property="votesTableView" destination="nUK-ST-vI6" id="cPP-Nb-ToZ"/>
                         <segue destination="IiS-QM-Bzg" kind="showDetail" identifier="waitForOthers" id="Ff5-CW-eYC"/>
+                        <segue destination="69H-v3-aYS" kind="showDetail" identifier="showFinalResults" id="M9W-kd-BPC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtE-rn-qfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -974,6 +1080,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dI7-yh-DwD"/>
-        <segue reference="4p5-yx-bY6"/>
+        <segue reference="Ff5-CW-eYC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -41,8 +41,12 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func startNextRound() {
-        Game.setReady()
-        self.performSegue(withIdentifier: "waitForOthers", sender: self)
+        if Game.isLastRound() {
+            self.performSegue(withIdentifier: "showFinalResults", sender: self)
+        } else {
+            Game.setReady()
+            self.performSegue(withIdentifier: "waitForOthers", sender: self)
+        }
     }
     
     @IBAction func leaveGame() {

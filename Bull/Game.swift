@@ -13,7 +13,8 @@ class Game {
     var definitionsOrder: [String]?
     var isCreator = false
     var name: String?
-    var scores: [String: Int]?
+    var round = 1
+    var scores: [(key: String, value: Int)]?
     var started = false
     var votes: [String: [String]]?
     var votedFor: String?
@@ -85,6 +86,7 @@ class Game {
     static func leave() {
         resetForRound()
         shared.name = nil
+        shared.round = 1
         shared.word = nil
         shared.isCreator = false
         shared.started = false
@@ -93,8 +95,10 @@ class Game {
     }
     
     static func resetForRound() {
+        print("Resetting for round \(shared.round + 1)")
         shared.definitions = nil
         shared.definitionsOrder = nil
+        shared.round += 1
         shared.votes = nil
         shared.votedFor = nil
         shared.word = nil
@@ -122,7 +126,7 @@ class Game {
     }
     
     static func setScores(_ scores: [String: Int]) {
-        shared.scores = scores
+        shared.scores = scores.sorted(by: { $0.1 < $1.1 })
     }
     
     static func definitionCount() -> Int {
@@ -176,5 +180,25 @@ class Game {
     
     static func start() {
         shared.started = true
+    }
+    
+    static func resultsCount() -> Int {
+        return shared.scores!.count
+    }
+    
+    static func resultAt(_ index: Int) -> (key: String, value: Int) {
+        return shared.scores![index]
+    }
+    
+    static func winner() -> (key: String, value: Int) {
+        return shared.scores![0]
+    }
+    
+    static func currentRound() -> Int {
+        return shared.round
+    }
+    
+    static func isLastRound() -> Bool {
+        return shared.round == 10
     }
 }
