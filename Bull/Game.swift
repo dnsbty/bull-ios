@@ -126,7 +126,7 @@ class Game {
     }
     
     static func setScores(_ scores: [String: Int]) {
-        shared.scores = scores.sorted(by: { $0.1 < $1.1 })
+        shared.scores = scores.sorted(by: { $0.1 > $1.1 })
     }
     
     static func definitionCount() -> Int {
