@@ -10,7 +10,7 @@ import Foundation
 import Birdsong
 
 class GameServer {
-    let socketUrl = "ws://28339503.ngrok.io/socket/websocket"
+    let socketUrl = "wss://api.thebullgame.com/socket/websocket"
     var socket: Socket?
     var channel: Channel?
     var onJoin: ((_ gameId: String) -> ())?
