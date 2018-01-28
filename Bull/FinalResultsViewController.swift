@@ -33,7 +33,9 @@ class FinalResultsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func finishGame() {
+        print("Leaving")
         Game.leave()
+        print("Left")
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

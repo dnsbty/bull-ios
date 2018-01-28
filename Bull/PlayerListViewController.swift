@@ -52,18 +52,35 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.gameId = gameId
             self.gameIdLabel.text = self.gameId
             self.updatePlayerList()
+            self.dismiss(animated: false, completion: nil)
         })
         
         GameServer.onStartGame({
             self.performSegue(withIdentifier: "startGame", sender: self)
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if isCreator {
-            GameServer.createGame(Game.playerName()!)
-        } else {
-            GameServer.joinGame(gameId, Game.playerName()!)
+        if Game.playerName() != nil {
+            let message = isCreator ? "Creating game..." : "Joining game..."
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: {
+                if self.isCreator {
+                    GameServer.createGame(Game.playerName()!)
+                } else {
+                    GameServer.joinGame(self.gameId, Game.playerName()!)
+                }
+            })
         }
-        self.updatePlayerList()
     }
     
     func updatePlayerList() {
@@ -79,9 +96,5 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func leaveGame(_ sender: Any) {
         Game.leave()
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
 }
