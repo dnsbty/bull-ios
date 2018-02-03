@@ -55,9 +55,35 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.dismiss(animated: false, completion: nil)
         })
         
+        GameServer.onError({ error in
+            self.dismiss(animated: false, completion: nil)
+            print("Error joining game: \(String(describing: error))")
+            
+            let title = "Oh no!"
+            let message = self.message(forError: error)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                self.leaveGame(self)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        })
+        
         GameServer.onStartGame({
             self.performSegue(withIdentifier: "startGame", sender: self)
         })
+    }
+    
+    private func message(forError: String?) -> String {
+        switch forError {
+        case "bad_id"?:
+            return "That game ID seems to be wrong 😬"
+        case "bad_key"?:
+            return "It looks like you don't have permission to join that game 😕"
+        case "started"?:
+            return "It looks like they started the game without you 😒"
+        default:
+            return "Bull couldn't connect to the server 😞 Maybe try again in a few minutes?"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

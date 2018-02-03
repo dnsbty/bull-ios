@@ -13,6 +13,7 @@ class GameServer {
     let socketUrl = "wss://api.thebullgame.com/socket/websocket"
     var socket: Socket?
     var channel: Channel?
+    var onError: ((_ error: String?) -> ())?
     var onJoin: ((_ gameId: String) -> ())?
     var onPresenceUpdate: (() -> ())?
     var onStartDefining: (() -> ())?
@@ -92,6 +93,7 @@ class GameServer {
             shared.onJoin?(gameId)
         }).receive("error", callback: { payload in
             print("Failed joining channel. Payload: \(payload)")
+            shared.onError?(payload["response"] as? String)
         })
         
         setupCallbacks()
@@ -194,6 +196,10 @@ class GameServer {
     
     static func onJoin(_ callback: @escaping (String) -> ()) {
         shared.onJoin = callback
+    }
+    
+    static func onError(_ callback: @escaping (String?) -> ()) {
+        shared.onError = callback
     }
     
     static func onPresenceUpdate(_ callback: @escaping () -> ()) {
