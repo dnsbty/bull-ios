@@ -90,7 +90,15 @@ class PlayerListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func startGame(_ sender: Any) {
-        GameServer.startGame()
+        if Game.playerCount() > 1 {
+            GameServer.startGame()
+        } else {
+            let title = "Don't play alone!"
+            let message = "Invite a friend to join using the code at the top 😃"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func leaveGame(_ sender: Any) {
