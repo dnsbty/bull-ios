@@ -12,7 +12,9 @@ class Game {
     var definitions: [String: String]?
     var definitionsOrder: [String]?
     var isCreator = false
+    var playerNames: [String]?
     var name: String?
+    var rejoinKey = ""
     var round = 1
     var scores: [(key: String, value: Int)]?
     var started = false
@@ -42,12 +44,12 @@ class Game {
         return shared.name
     }
     
-    static func players() -> [String] {
-        return GameServer.playerNames()
+    static func players() -> [String]? {
+        return shared.playerNames
     }
     
     static func playerAt(_ index: Int) -> Player {
-        let name = players()[index]
+        let name = shared.playerNames![index]
         let status = GameServer.playerStatus(name)
         return Player(name: name, status: status)
     }
@@ -70,6 +72,14 @@ class Game {
     
     static func setReady() {
         GameServer.updateStatus("ready")
+    }
+    
+    static func key() -> String {
+        return shared.rejoinKey
+    }
+    
+    static func setRejoinKey(_ rejoinKey: String) {
+        shared.rejoinKey = rejoinKey
     }
     
     static func submitDefinition(_ definition: String) {
@@ -109,7 +119,7 @@ class Game {
     }
     
     static func allReady() -> Bool {
-        for player in players() {
+        for player in shared.playerNames! {
             if GameServer.playerStatus(player) != "ready" {
                 return false
             }

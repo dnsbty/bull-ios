@@ -133,8 +133,10 @@ class GameServer {
         }
         
         shared.channel!.on("start_game", callback: { response in
-            let word = response.payload.first!.value as! String
+            let word = response.payload["word"] as! String
+            let rejoinKey = response.payload["rejoin_key"] as! String
             Game.setWord(word)
+            Game.setRejoinKey(rejoinKey)
             Game.start()
             shared.onStartGame?()
         })
