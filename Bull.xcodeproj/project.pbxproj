@@ -87,6 +87,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D752B7F72026E28D00A2C4ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D706BFB81FF6B97A00D9AE52 /* Game.swift */,
+				D7B6B19E1FF5E7A700B8133C /* GameServer.swift */,
+				D7B6B19A1FF436C400B8133C /* Player.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D752B7F82026E29600A2C4ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D752B7FA2026E2B900A2C4ED /* SubView */,
+				D7C6C4131FF30E0D00983C2A /* Main.storyboard */,
+				D7C6C4181FF30E0D00983C2A /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D752B7F92026E2A000A2C4ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6C40F1FF30E0D00983C2A /* AppDelegate.swift */,
+				D7B6B1A01FF627E200B8133C /* DefineViewController.swift */,
+				D7F2BAFE20005A72002B0EF0 /* FinalResultsViewController.swift */,
+				D7B917C21FF327A30073D49E /* GameDetailsViewController.swift */,
+				D7C6C4111FF30E0D00983C2A /* NewGameViewController.swift */,
+				D7B917C01FF324400073D49E /* PlayerListViewController.swift */,
+				D706BFC21FF76A5700D9AE52 /* ResultsViewController.swift */,
+				D706BFBC1FF6EC4700D9AE52 /* VoteViewController.swift */,
+				D706BFBA1FF6D27000D9AE52 /* WaitingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D752B7FA2026E2B900A2C4ED /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				D706BFBE1FF6EE0100D9AE52 /* DefinitionsTableCell.swift */,
+				D7F2BAFC2000599C002B0EF0 /* FinalResultsTableCell.swift */,
+				D7B917C41FF33CCC0073D49E /* PlayerListTableCell.swift */,
+				D706BFC41FF770DE00D9AE52 /* ResultsTableCell.swift */,
+				D7B917BE1FF31AAB0073D49E /* RoundedButton.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		D752B7FB2026E33300A2C4ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6C4161FF30E0D00983C2A /* Assets.xcassets */,
+				D7C6C41B1FF30E0D00983C2A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D7C6C4031FF30E0D00983C2A = {
 			isa = PBXGroup;
 			children = (
@@ -108,27 +165,10 @@
 		D7C6C40E1FF30E0D00983C2A /* Bull */ = {
 			isa = PBXGroup;
 			children = (
-				D7C6C40F1FF30E0D00983C2A /* AppDelegate.swift */,
-				D7C6C4111FF30E0D00983C2A /* NewGameViewController.swift */,
-				D7B917C21FF327A30073D49E /* GameDetailsViewController.swift */,
-				D706BFC41FF770DE00D9AE52 /* ResultsTableCell.swift */,
-				D7F2BAFC2000599C002B0EF0 /* FinalResultsTableCell.swift */,
-				D706BFBA1FF6D27000D9AE52 /* WaitingViewController.swift */,
-				D7B6B1A01FF627E200B8133C /* DefineViewController.swift */,
-				D7B917C41FF33CCC0073D49E /* PlayerListTableCell.swift */,
-				D706BFC21FF76A5700D9AE52 /* ResultsViewController.swift */,
-				D706BFBE1FF6EE0100D9AE52 /* DefinitionsTableCell.swift */,
-				D7F2BAFE20005A72002B0EF0 /* FinalResultsViewController.swift */,
-				D7B6B19A1FF436C400B8133C /* Player.swift */,
-				D7C6C4131FF30E0D00983C2A /* Main.storyboard */,
-				D7C6C4161FF30E0D00983C2A /* Assets.xcassets */,
-				D7C6C4181FF30E0D00983C2A /* LaunchScreen.storyboard */,
-				D7C6C41B1FF30E0D00983C2A /* Info.plist */,
-				D7B917BE1FF31AAB0073D49E /* RoundedButton.swift */,
-				D7B917C01FF324400073D49E /* PlayerListViewController.swift */,
-				D7B6B19E1FF5E7A700B8133C /* GameServer.swift */,
-				D706BFB81FF6B97A00D9AE52 /* Game.swift */,
-				D706BFBC1FF6EC4700D9AE52 /* VoteViewController.swift */,
+				D752B7F72026E28D00A2C4ED /* Model */,
+				D752B7F82026E29600A2C4ED /* View */,
+				D752B7F92026E2A000A2C4ED /* Controller */,
+				D752B7FB2026E33300A2C4ED /* Supporting Files */,
 			);
 			path = Bull;
 			sourceTree = "<group>";

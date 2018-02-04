@@ -11,6 +11,7 @@ import Birdsong
 
 class GameServer {
     let socketUrl = "wss://api.thebullgame.com/socket/websocket"
+//    let socketUrl = "wss://5069954f.ngrok.io/socket/websocket"
     var socket: Socket?
     var channel: Channel?
     var onError: ((_ error: String?) -> ())?
@@ -49,6 +50,16 @@ class GameServer {
     
     static func connect(_ name: String, _ callback: @escaping () -> ()) {
         shared.socket = Socket(url: shared.socketUrl, params: ["name": name])
+        
+        // After connection, call the callback
+        shared.socket!.onConnect = callback
+        
+        // Connect!
+        shared.socket!.connect()
+    }
+    
+    static func reconnect(_ name: String, _ key: String, _ callback: @escaping () -> ()) {
+        shared.socket = Socket(url: shared.socketUrl, params: ["name": name, "key": key])
         
         // After connection, call the callback
         shared.socket!.onConnect = callback
@@ -190,6 +201,12 @@ class GameServer {
     
     static func sendReadySignal() {
         shared.channel?.send("all_ready", payload: [:])
+    }
+    
+    static func onDisconnect() {
+        reconnect(Game.playerName()!, Game.key(), {
+            print("reconnected")
+        })
     }
     
     static func onStartGame(_ callback: @escaping () -> ()) {
